@@ -10,13 +10,13 @@
     <title>Tabela</title>
 </head>
 
-<body>
+<body onload="construir_tabela()">
     <div class="container">
         <h1>User Table</h1>
         <hr>
         <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="filtro" oninput="construir_tabela()">
-            <label for="filtro">Pesquisa</label>
+            <input type="email" class="form-control" id="filter" oninput="construir_tabela()">
+            <label for="filter">Pesquisa</label>
         </div>
         <table class="table table-striped ">
             <thead>
@@ -34,5 +34,4 @@
     </div>
     <script src="./index.js"></script>
 </body>
-
 </html>

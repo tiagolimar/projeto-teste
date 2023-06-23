@@ -1,28 +1,21 @@
 "use strict";
 
-const construir_tabela = ()=>{
-    fetch('https://jsonplaceholder.typicode.com/users')
-    .then(response=>response.json())
-    .then(json=>{
-        content.innerHTML = ''
-        json.forEach(element => {
-            let endereco = ''
+const construir_tabela = async ()=>{
+    const response = await fetch('https://jsonplaceholder.typicode.com/users')
+    const usuarios = await response.json()
 
-            Object.keys(element.address).forEach(e=>{
-                if(e != 'geo') endereco += ', ' + element.address[e]
-            })
+    content.innerHTML = ''
 
-            endereco = endereco.replace(', ','')
-            
-            let conteudo = `<tr><td>${element.id}</td>
-            <td>${element.name}</td>
-            <td>${element.email}</td>
-            <td>${element.username}</td>
-            <td>${element.website}</td>
-            <td>${endereco}</td></tr>`
+    usuarios.forEach(usuario => {
+        const html = `<tr><td>${usuario.id}</td>
+        <td>${usuario.name}</td>
+        <td>${usuario.email}</td>
+        <td>${usuario.username}</td>
+        <td>${usuario.website}</td></tr>`
 
-            if(!filtro.value || conteudo.includes(filtro.value)) content.innerHTML += conteudo
-        });
+        if (!filter.value || html.toLowerCase().includes(filter.value.toLowerCase())) {
+            content.innerHTML += html
+        }
     })
 }
 
